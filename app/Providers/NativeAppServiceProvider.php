@@ -30,9 +30,28 @@ class NativeAppServiceProvider
         //     ->register();
 
         Window::open()
-            ->width(800)
-            ->height(800);
+            ->title('My first app')
+            ->rememberState(true)
+            ->route('test')->showDevTools(false);
 
+        // Window::open('second')
+        //     ->rememberState(true)
+        //     ->route('home')->showDevTools(false);
+            // ->width(800)
+            // ->height(800);
+
+        Menu::new()
+            ->appMenu()
+            ->editMenu()
+            ->submenu('My menu', Menu::new()
+                ->label('Add reminder')
+                ->link('https://google.com', 'GOOGLE ME', 'cmd+d')
+                ->toggleFullscreen()
+                // ->checkbox('hahaha', false)
+                ->separator()
+                ->quit()
+            )
+            ->register();
         /**
             Dock::menu(
                 Menu::new()
